@@ -1,60 +1,60 @@
 class EmployeePayrollData {
 
     get name() { 
-        return this.name; 
+        return this._name; 
     }
     set name(name){ 
-        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        let nameRegex = RegExp('^[A-Z]{1}[a-z\\s]{2,}$');
         if(nameRegex.test(name)) 
-            this.name = name;
+            this._name = name;
         else throw "Name is Incorrect";
     }
 
     get profilePic() {
-        return this.profilePic;
+        return this._profilePic;
     }
     set profilePic(profilePic){
-        this.profilePic = profilePic;
+        this._profilePic = profilePic;
     }
 
     get id() {
-        return this.id;
+        return this._id;
     }
     set id(id){
-        if(id>0) this.id = id;
+        if(id>0) this._id = id;
         else throw "ID is not valid"
     }
 
     get salary() {
-        return this.salary;
+        return this._salary;
     }
     set salary(salary){
-        this.salary = salary;
+        this._salary = salary;
     }
 
     get department() {
-        return this.department;
+        return this._department;
     }
     set department(department){
-        this.department = department;
+        this._department = department;
     }
 
     get note() {
-        return this.note;
+        return this._note;
     }
     set note(note){
-        this.note = note;
+        this._note = note;
     }
 
     get gender() {
-        return this.gender;
+        return this._gender;
     }
     set gender(gender){
-        this.gender = gender;
+        this._gender = gender;
     }
 
     get startDate() {
-        return this.startDate;
+        return this._startDate;
     }
     set startDate(startDate){
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -63,7 +63,7 @@ class EmployeePayrollData {
         let previous = new Date();
         previous.setDate(previous.getDate() - 30);
         if((new Date(empDate)<=new Date()) && new Date(empDate)>=previous)
-            this.startDate = empDate;
+            this._startDate = empDate;
         else throw "Invalid Date"
     }
 
