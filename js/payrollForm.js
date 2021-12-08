@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             dateError.textContent = e;
         }
     });
-        day.addEventListener('input',function(){
+    day.addEventListener('input',function(){
         try {
             new EmployeePayrollData().startDate = new Date(document.querySelector('#day').value + ' ' + document.querySelector('#month').value + ' ' +
                                             document.querySelector('#year').value);
@@ -56,9 +56,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const save = () => {
     try {
         let employeePayrollData = createEmployeePayroll();
+        createAndUpdateStorage(employeePayrollData);
     }catch (e) {
         return;
     }
+}
+
+function createAndUpdateStorage(employeePayrollData){
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+
+    if(employeePayrollList != undefined){
+        employeePayrollList.push(EmployeePayrollData);
+    }else {
+        employeePayrollList = [EmployeePayrollData]
+    }
+    alert(employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList))
 }
 
 const createEmployeePayroll = () => {
